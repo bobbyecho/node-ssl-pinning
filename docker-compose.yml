@@ -2,3 +2,5 @@ version: '3'
 services:
   api:
     image: 'node:14-alpine'
+    ports:
+    - 3000:3000
