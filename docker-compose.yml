@@ -4,3 +4,5 @@ services:
     image: 'node:14-alpine'
     ports:
     - 3000:3000
+    volumes:
+    - .:/app
