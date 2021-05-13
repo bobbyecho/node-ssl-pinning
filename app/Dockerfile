@@ -2,7 +2,7 @@ FROM node:latest
 
 RUN mkdir -p /etc/src/app
 
-WORKDIR /usr/src/app
+WORKDIR /etc/src/app
 
 COPY package.json /etc/src/app
 
