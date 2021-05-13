@@ -12,7 +12,7 @@ services:
     networks:
       - ssl-network
 
-  webserver:
+  nginx:
     restart: always
     image: nginx:1.19.10-alpine
     ports:
