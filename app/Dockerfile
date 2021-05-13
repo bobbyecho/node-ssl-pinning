@@ -10,6 +10,6 @@ RUN npm i pm2 -g
 
 RUN npm install
 
-COPY ../app /usr/src/app
+COPY ./app /usr/src/app
 
 CMD [ "npm", "run", "start" ]
