@@ -10,4 +10,4 @@ RUN npm install
 
 COPY ./app /etc/app
 
-CMD [ "pm2", "start", "index.js" ]
+CMD [ "node", "index.js" ]
