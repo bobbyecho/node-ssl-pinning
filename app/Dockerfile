@@ -10,6 +10,6 @@ RUN npm i pm2 -g
 
 RUN npm install
 
-COPY /root/node-ssl-pinning/app /usr/src/app
+COPY index.js /usr/src/app
 
 CMD [ "npm", "run", "start" ]
