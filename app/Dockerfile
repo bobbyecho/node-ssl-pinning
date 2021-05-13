@@ -4,10 +4,10 @@ WORKDIR /etc/app
 
 RUN npm i pm2 -g
 
-COPY package*.json ./
+COPY package.json /etc/app
 
 RUN npm install
 
-COPY . .
+COPY . /etc/app
 
 CMD [ "pm2", "start", "index.js" ]
