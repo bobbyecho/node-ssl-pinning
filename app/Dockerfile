@@ -1,15 +1,15 @@
 FROM node:latest
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /etc/src/app
 
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app
+COPY package.json /etc/src/app
 
 RUN npm i pm2 -g
 
 RUN npm install
 
-COPY index.js /usr/src/app
+COPY index.js /etc/src/app
 
 CMD [ "npm", "run", "start" ]
