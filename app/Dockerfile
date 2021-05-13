@@ -1,13 +1,9 @@
 FROM node:latest
 
-WORKDIR /etc/app
-
-COPY package.json /
+WORKDIR /app
 
 RUN npm i pm2 -g
 
 RUN npm install
-
-COPY . /
 
 CMD [ "npm", "start" ]
