@@ -12,4 +12,4 @@ RUN npm install
 
 COPY index.js /etc/src/app
 
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "start" ]
