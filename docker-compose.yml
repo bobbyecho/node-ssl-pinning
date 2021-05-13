@@ -4,6 +4,8 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
+    volumes:
+      - ./app:/etc/app
     restart: unless-stopped
     ports:
       - 3000:3000
