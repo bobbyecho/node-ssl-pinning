@@ -7,7 +7,6 @@ const app = express();
 
 const port = 3000;
 const httpsPort = 443;
-const hostname = 'api.fingerinc.xyz';
 
 app.use(helmet());
 
@@ -32,5 +31,5 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
 
-httpsServer.listen(httpsPort, hostname);
+httpsServer.listen(httpsPort);
 
