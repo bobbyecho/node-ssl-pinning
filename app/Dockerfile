@@ -10,4 +10,6 @@ RUN npm install
 
 COPY . /etc/app
 
+EXPOSE 3000
+
 CMD [ "node", "index.js" ]

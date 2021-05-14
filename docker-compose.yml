@@ -1,12 +1,14 @@
-version: '3.5'
+version: '3.8'
 services:
-  api:
+  app:
     build:
       context: ./app
       dockerfile: Dockerfile
     restart: unless-stopped
+    volumes:
+      - ./app:/etc/app
     ports:
-      - 3000:3000
+      - "3000:3000"
     networks:
       - ssl-network
 
@@ -18,12 +20,13 @@ services:
     ports:
       - '80:80'
       - '443:443'
-    volumes:
-      - ./nginx/letsencrypt:/etc/letsencrypt
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+#    volumes:
+#      - ./html:/var/www/html
+#      - ./nginx/letsencrypt:/etc/letsencrypt
     networks:
       - ssl-network
-
+    depends_on:
+      - app
 networks:
   ssl-network:
     driver: bridge

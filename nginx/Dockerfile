@@ -1,39 +1,24 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
 
-MAINTAINER Bobby Echo Prasetyo (erangaeb@gmail.com)
+MAINTAINER Bobby Echo Prasetyo (bobbyechop@gmail.com)
 
 # install nginx
-RUN apt-get update -y
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository -y ppa:nginx/stable
-RUN apt-get update -y
-RUN apt-get install -y nginx
+RUN apt update -y \
+    && apt install nginx vim -y \
+    && apt-get install software-properties-common -y \
+    && add-apt-repository ppa:certbot/certbot -y \
+    && apt-get install python-certbot-nginx -y \
+    && apt-get clean
 
-# install certbot
-RUN add-apt-repository ppa:certbot/certbot
-RUN apt-get update -y
-RUN apt-get install -y certbot python-certbot-nginx
+ADD ./conf/default.conf /etc/nginx/conf.d
 
-# deamon mode off
-RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
-RUN chown -R www-data:www-data /var/lib/nginx
+ADD ./conf/fingerinc-staging.conf /etc/nginx/sites-available/fingerinc.xyz
+
+RUN ln -s /etc/nginx/sites-available/fingerinc.xyz /etc/nginx/sites-enabled/fingerinc.xyz
+
+RUN rm -rf /etc/nginx/sites-enabled/default
 
 # expose ports
 EXPOSE 80 443
 
-# add nginx staging conf
-ADD conf/fingerinc.conf /etc/nginx/sites-available/fingerinc.xyz
-
-# create symlinks
-RUN ln -s /etc/nginx/sites-available/fingerinc.xyz /etc/nginx/sites-enabled/climguards
-
-# work dir
-WORKDIR /etc/nginx
-
-# add entrypoing
-ADD docker-entrypoint.sh .
-
-# make certs dir as volume
-VOLUME ["/etc/letsencrypt"]
-
-CMD ["/etc/nginx/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
