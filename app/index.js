@@ -10,8 +10,8 @@ app.use(helmet)
 const port = 3000;
 
 const options = {
-    key: fs.readFileSync("/etc/letsencrypt/live/api.fingerinc.xyz/privkey1.pem"),
-    cert: fs.readFileSync("/etc/letsencrypt/live/api.fingerinc.xyz/fullchain.pem") // these paths might differ for you, make sure to copy from the certbot output
+    key: fs.readFileSync("./certs/api.fingerinc.xyz/privkey1.pem"),
+    cert: fs.readFileSync("./certs/api.fingerinc.xyz/fullchain.pem")
 };
 
 app.get('/', (req, res) => {
