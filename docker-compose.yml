@@ -2,8 +2,8 @@ version: '3.5'
 services:
   api:
     build:
-      context: ./
-      dockerfile: ./app/Dockerfile
+      context: ./app
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -11,27 +11,18 @@ services:
       - ssl-network
 
   nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     restart: always
-    image: nginx:1.19.10-alpine
     ports:
       - '80:80'
       - '443:443'
     volumes:
-      - ./nginx:/etc/nginx/conf.d
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+      - ./nginx/letsencrypt:/etc/letsencrypt
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-    depends_on:
-      - api
     networks:
       - ssl-network
-
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
   ssl-network:
