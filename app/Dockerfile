@@ -4,13 +4,11 @@ RUN mkdir -p /etc/app
 
 WORKDIR /etc/app
 
-RUN npm i pm2 -g
-
-COPY ./package.json /etc/app/
+COPY package.json /etc/app/
 
 RUN npm install
 
-COPY ./ /etc/app/
+COPY . /etc/app/
 
 EXPOSE 3000
 

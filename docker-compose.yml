@@ -5,8 +5,6 @@ services:
       context: ./app
       dockerfile: Dockerfile
     restart: unless-stopped
-    volumes:
-      - ./app:/etc/app
     ports:
       - "3000:3000"
     networks:
