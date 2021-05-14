@@ -1,5 +1,7 @@
 FROM node:latest
 
+RUN mkdir -p /etc/app
+
 WORKDIR /etc/app
 
 RUN npm i pm2 -g
