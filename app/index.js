@@ -5,14 +5,20 @@ const helmet = require('helmet');
 
 const app = express();
 
-app.use(helmet())
-
 const port = 3000;
+const httpsPort = 443;
+const hostname = 'api.fingerinc.xyz';
 
-const options = {
+app.use(helmet());
+
+const httpsOptions = {
     key: fs.readFileSync("./certs/api.fingerinc.xyz/privkey1.pem"),
-    cert: fs.readFileSync("./certs/api.fingerinc.xyz/fullchain1.pem")
+    cert: fs.readFileSync("./certs/api.fingerinc.xyz/fullchain1.pem"),
+    requestCert: true,
+    rejectUnauthorized: true
 };
+
+const httpsServer = https.createServer(httpsOptions, app);
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello World</h1>');
@@ -26,4 +32,5 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
 
-https.createServer(options, app).listen(8080);
+httpsServer.listen(httpsPort, hostname);
+
