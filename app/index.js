@@ -5,7 +5,7 @@ const helmet = require('helmet');
 
 const app = express();
 
-const port = 3000;
+const httpPort = 3000;
 const httpsPort = 443;
 
 app.use(helmet());
@@ -27,9 +27,6 @@ app.get('/api', (req, res) => {
     res.send('<h1>Hello API</h1>');
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
-
+httpsServer.listen(httpPort);
 httpsServer.listen(httpsPort);
 
