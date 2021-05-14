@@ -12,9 +12,9 @@ RUN apt update -y \
 
 ADD ./conf/default.conf /etc/nginx/conf.d
 
-ADD ./conf/fingerinc-staging.conf /etc/nginx/sites-available/fingerinc.xyz
+ADD ./conf/fingerinc-staging.conf /etc/nginx/sites-available/api.fingerinc.xyz
 
-RUN ln -s /etc/nginx/sites-available/fingerinc.xyz /etc/nginx/sites-enabled/fingerinc.xyz
+RUN ln -s /etc/nginx/sites-available/api.fingerinc.xyz /etc/nginx/sites-enabled/api.fingerinc.xyz
 
 RUN rm -rf /etc/nginx/sites-enabled/default
 
