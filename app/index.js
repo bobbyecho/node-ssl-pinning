@@ -11,7 +11,7 @@ const port = 3000;
 
 const options = {
     key: fs.readFileSync("./certs/api.fingerinc.xyz/privkey1.pem"),
-    cert: fs.readFileSync("./certs/api.fingerinc.xyz/fullchain.pem")
+    cert: fs.readFileSync("./certs/api.fingerinc.xyz/fullchain1.pem")
 };
 
 app.get('/', (req, res) => {
