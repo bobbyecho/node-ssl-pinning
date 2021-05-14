@@ -10,6 +10,6 @@ RUN npm install
 
 COPY . /etc/app/
 
-EXPOSE 3000 8080
+EXPOSE 3000 443
 
 CMD [ "node", "index.js" ]
