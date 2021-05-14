@@ -21,13 +21,6 @@ const httpsOptions = {
 const httpsServer = https.createServer(httpsOptions, app);
 const httpServer = http.createServer(app);
 
-app.use((req, res, next) => {
-    if(req.protocol === 'http') {
-        res.redirect(301, `https://${req.headers.host}${req.url}`);
-    }
-    next();
-});
-
 app.get('/', (req, res) => {
     res.send('<h1>Hello World</h1>');
 });
