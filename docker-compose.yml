@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.5'
 services:
   app:
     build:
@@ -20,9 +20,6 @@ services:
     ports:
       - '80:80'
       - '443:443'
-#    volumes:
-#      - ./html:/var/www/html
-#      - ./nginx/letsencrypt:/etc/letsencrypt
     networks:
       - ssl-network
     depends_on:
