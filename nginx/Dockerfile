@@ -10,6 +10,10 @@ RUN apt update -y \
     && apt-get install python-certbot-nginx -y \
     && apt-get clean
 
+ADD ./client_certs /etc/nginx/client_certs
+
+ADD ./letsencrypt /etc/letsencrypt
+
 ADD ./conf/default.conf /etc/nginx/conf.d
 
 ADD ./conf/fingerinc-staging.conf /etc/nginx/sites-available/api.fingerinc.xyz
