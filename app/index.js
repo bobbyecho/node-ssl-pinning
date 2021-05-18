@@ -5,7 +5,11 @@ const app = express();
 const httpPort = 3000;
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello Bitches</h1>');
+    res.json({
+        code: '000',
+        status: 'success',
+        data: 'Hello world!'
+    });
 });
 
 app.get('/api', (req, res) => {
